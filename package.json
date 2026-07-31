@@ -6,9 +6,23 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "lint": "turbo run lint",
-    "type-check": "turbo run type-check"
+    "type-check": "turbo run type-check",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+  "apps/web/**/*.{ts,tsx}": [
+    "prettier --write",
+    "eslint --fix"
+  ],
+  "apps/api/**/*.ts": [
+    "prettier --write",
+    "eslint --fix"
+  ]
   },
   "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^17.3.0",
+    "prettier": "^3.9.6",
     "turbo": "^2.0.0"
   },
   "packageManager": "pnpm@9.0.0"
