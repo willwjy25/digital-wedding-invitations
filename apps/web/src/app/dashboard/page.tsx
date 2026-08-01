@@ -32,6 +32,11 @@ export default function DashboardPage() {
           Kelola Acara
         </Link>
       </div>
+      <div>
+        <Link href="/dashboard/love-story" className="text-blue-600 underline">
+          Kelola Love Story
+        </Link>
+      </div>
     </div>
   );
 }
