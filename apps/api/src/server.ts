@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import authRoutes from './modules/auth/auth.route';
 import brideGroomRoutes from './modules/bride-groom/bride-groom.route';
 import eventRoutes from './modules/event/event.route';
+import loveStoryRoutes from './modules/love-story/love-story.route';
 
 dotenv.config();
 
@@ -26,3 +27,5 @@ app.listen(PORT, () => {
 app.use('/api/bride-groom', brideGroomRoutes);
 
 app.use('/api/events', eventRoutes);
+
+app.use('/api/love-story', loveStoryRoutes);
