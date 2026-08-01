@@ -1,0 +1,169 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Tenant {
+  id        String   @id @default(uuid())
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  adminUsers    AdminUser[]
+  guests        Guest[]
+  events        Event[]
+  brideGroom    BrideGroom?
+  loveStory     LoveStoryItem[]
+  gallery       GalleryItem[]
+  giftAccounts  GiftAccount[]
+  rsvps         RSVP[]
+  wishes        Wish[]
+
+  @@map("tenants")
+}
+
+model AdminUser {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@map("admin_users")
+}
+
+model Guest {
+  id        String   @id @default(uuid())
+  name      String
+  slug      String
+  phone     String?
+  createdAt DateTime @default(now())
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  rsvp     RSVP?
+  checkIn  CheckIn?
+
+  @@unique([tenantId, slug])
+  @@map("guests")
+}
+
+model Event {
+  id        String   @id @default(uuid())
+  title     String
+  date      DateTime
+  startTime String
+  endTime   String?
+  location  String
+  mapsUrl   String?
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@map("events")
+}
+
+model BrideGroom {
+  id            String  @id @default(uuid())
+  brideName     String
+  brideParents  String?
+  bridePhotoUrl String?
+  groomName     String
+  groomParents  String?
+  groomPhotoUrl String?
+
+  tenantId String @unique
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@map("bride_groom")
+}
+
+model LoveStoryItem {
+  id          String    @id @default(uuid())
+  title       String
+  description String
+  date        DateTime?
+  imageUrl    String?
+  order       Int       @default(0)
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@map("love_story_items")
+}
+
+model GalleryItem {
+  id       String  @id @default(uuid())
+  imageUrl String
+  caption  String?
+  order    Int     @default(0)
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@map("gallery_items")
+}
+
+model GiftAccount {
+  id            String @id @default(uuid())
+  bankName      String
+  accountNumber String
+  accountName   String
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@map("gift_accounts")
+}
+
+model RSVP {
+  id         String   @id @default(uuid())
+  attending  Boolean
+  guestCount Int      @default(1)
+  message    String?
+  createdAt  DateTime @default(now())
+
+  guestId String @unique
+  guest   Guest  @relation(fields: [guestId], references: [id], onDelete: Cascade)
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@map("rsvps")
+}
+
+model Wish {
+  id        String   @id @default(uuid())
+  name      String
+  message   String
+  createdAt DateTime @default(now())
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@map("wishes")
+}
+
+model CheckIn {
+  id        String    @id @default(uuid())
+  checkedAt DateTime?
+  qrCode    String    @unique
+
+  guestId String @unique
+  guest   Guest  @relation(fields: [guestId], references: [id], onDelete: Cascade)
+
+  @@map("check_ins")
+}
