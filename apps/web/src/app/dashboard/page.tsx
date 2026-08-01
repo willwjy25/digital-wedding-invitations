@@ -27,6 +27,11 @@ export default function DashboardPage() {
           Kelola Data Mempelai
         </Link>
       </div>
+      <div>
+        <Link href="/dashboard/events" className="text-blue-600 underline">
+          Kelola Acara
+        </Link>
+      </div>
     </div>
   );
 }
