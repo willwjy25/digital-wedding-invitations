@@ -1,5 +1,6 @@
 'use client';
 
+import { BackButton } from '@/components/BackButton';
 import { useEffect, useState } from 'react';
 import type { GiftAccount, CreateGiftAccountInput } from '@repo/types';
 import {
@@ -52,6 +53,7 @@ export default function GiftAccountPage() {
 
   return (
     <div className="p-8">
+      <BackButton />
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-2xl font-bold">Kelola Wedding Gift</h1>
         {!showAddForm && (

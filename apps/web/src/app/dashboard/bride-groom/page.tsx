@@ -1,5 +1,6 @@
 'use client';
 
+import { BackButton } from '@/components/BackButton';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -49,6 +50,7 @@ export default function BrideGroomPage() {
 
   return (
     <div className="p-8">
+      <BackButton />
       <h1 className="mb-6 text-2xl font-bold">Data Mempelai</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-lg space-y-6">

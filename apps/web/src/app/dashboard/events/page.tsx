@@ -1,5 +1,6 @@
 'use client';
 
+import { BackButton } from '@/components/BackButton';
 import { useEffect, useState } from 'react';
 import type { Event, CreateEventInput } from '@repo/types';
 import { getEvents, createEvent, updateEvent, deleteEvent } from '@/features/event/event.api';
@@ -47,6 +48,7 @@ export default function EventsPage() {
 
   return (
     <div className="p-8">
+      <BackButton />
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-2xl font-bold">Kelola Acara</h1>
         {!showAddForm && (
