@@ -42,6 +42,11 @@ export default function DashboardPage() {
           Kelola Galeri
         </Link>
       </div>
+      <div>
+        <Link href="/dashboard/gift-account" className="text-blue-600 underline">
+          Kelola Wedding Gift
+        </Link>
+      </div>
     </div>
   );
 }
