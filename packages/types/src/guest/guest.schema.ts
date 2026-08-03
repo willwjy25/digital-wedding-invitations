@@ -1,16 +1,21 @@
 import { z } from 'zod';
 
+export const guestSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string().min(2, 'Nama tamu minimal 2 karakter'),
+  slug: z.string(),
+  phone: z.string().optional(),
+  tenantId: z.string().uuid(),
+  createdAt: z.date(),
+});
+
 export const createGuestSchema = z.object({
   name: z.string().min(2, 'Nama tamu minimal 2 karakter'),
   phone: z.string().optional(),
 });
 
-export const guestSchema = createGuestSchema.extend({
-  id: z.string().uuid(),
-  slug: z.string(),
-  tenantId: z.string().uuid(),
-  createdAt: z.date(),
-});
+export const updateGuestSchema = createGuestSchema.partial();
 
 export type Guest = z.infer<typeof guestSchema>;
 export type CreateGuestInput = z.infer<typeof createGuestSchema>;
+export type UpdateGuestInput = z.infer<typeof updateGuestSchema>;
