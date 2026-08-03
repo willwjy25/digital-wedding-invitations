@@ -6,6 +6,7 @@ import brideGroomRoutes from './modules/bride-groom/bride-groom.route';
 import eventRoutes from './modules/event/event.route';
 import loveStoryRoutes from './modules/love-story/love-story.route';
 import galleryRoutes from './modules/gallery/gallery.route';
+import giftAccountRoutes from './modules/gift-account/gift-account.route';
 
 dotenv.config();
 
@@ -32,3 +33,5 @@ app.use('/api/events', eventRoutes);
 app.use('/api/love-story', loveStoryRoutes);
 
 app.use('/api/gallery', galleryRoutes);
+
+app.use('/api/gift-accounts', giftAccountRoutes);
