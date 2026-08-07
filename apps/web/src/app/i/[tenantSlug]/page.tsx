@@ -5,6 +5,9 @@ import { useParams, useSearchParams } from 'next/navigation';
 import type { PublicInvitation } from '@repo/types';
 import { getPublicInvitation } from '@/features/public-invitation/public-invitation.api';
 import { CoverSection } from '@/features/public-invitation/sections/CoverSection';
+import { HeroSection } from '@/features/public-invitation/sections/HeroSection';
+import { BrideGroomSection } from '@/features/public-invitation/sections/BrideGroomSection';
+import { LoveStorySection } from '@/features/public-invitation/sections/LoveStorySection';
 
 export default function InvitationPage() {
   const params = useParams<{ tenantSlug: string }>();
@@ -27,7 +30,7 @@ export default function InvitationPage() {
         setIsLoading(false);
       }
     }
-     
+
     loadData();
   }, [params.tenantSlug, guestSlug]);
 
@@ -60,10 +63,13 @@ export default function InvitationPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero, Bride & Groom, dan section lainnya akan ditambahkan bertahap */}
-      <div className="p-8 text-center">
-        <p>Undangan terbuka! Section berikutnya akan kita bangun bertahap.</p>
-      </div>
+      <HeroSection
+        brideName={data.brideGroom?.brideName}
+        groomName={data.brideGroom?.groomName}
+        weddingDate={data.events[0]?.date}
+      />
+      <BrideGroomSection data={data.brideGroom} />
+      <LoveStorySection items={data.loveStory} />
     </div>
   );
 }
