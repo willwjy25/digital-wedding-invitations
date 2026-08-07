@@ -8,6 +8,7 @@ import loveStoryRoutes from './modules/love-story/love-story.route';
 import galleryRoutes from './modules/gallery/gallery.route';
 import giftAccountRoutes from './modules/gift-account/gift-account.route';
 import guestRoutes from './modules/guest/guest.route';
+import publicInvitationRoutes from './modules/public-invitation/public-invitation.route';
 
 dotenv.config();
 
@@ -38,3 +39,5 @@ app.use('/api/gallery', galleryRoutes);
 app.use('/api/gift-accounts', giftAccountRoutes);
 
 app.use('/api/guests', guestRoutes);
+
+app.use('/api/public', publicInvitationRoutes);

@@ -6,3 +6,4 @@ export * from './event/event.schema';
 export * from './love-story/love-story.schema';
 export * from './gallery/gallery.schema';
 export * from './gift-account/gift-account.schema';
+export * from './public-invitation/public-invitation.schema';
