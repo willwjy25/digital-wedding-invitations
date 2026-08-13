@@ -8,6 +8,9 @@ import { CoverSection } from '@/features/public-invitation/sections/CoverSection
 import { HeroSection } from '@/features/public-invitation/sections/HeroSection';
 import { BrideGroomSection } from '@/features/public-invitation/sections/BrideGroomSection';
 import { LoveStorySection } from '@/features/public-invitation/sections/LoveStorySection';
+import { EventSection } from '@/features/public-invitation/sections/EventSection';
+import { LocationSection } from '@/features/public-invitation/sections/LocationSection';
+import { GallerySection } from '@/features/public-invitation/sections/GallerySection';
 
 export default function InvitationPage() {
   const params = useParams<{ tenantSlug: string }>();
@@ -70,6 +73,9 @@ export default function InvitationPage() {
       />
       <BrideGroomSection data={data.brideGroom} />
       <LoveStorySection items={data.loveStory} />
+      <EventSection events={data.events} />
+      <LocationSection events={data.events} />
+      <GallerySection items={data.gallery} />
     </div>
   );
 }
