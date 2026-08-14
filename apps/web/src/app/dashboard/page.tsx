@@ -52,6 +52,11 @@ export default function DashboardPage() {
           Kelola Tamu
         </Link>
       </div>
+      <div>
+        <Link href="/dashboard/rsvp" className="text-blue-600 underline">
+          Lihat RSVP Tamu
+        </Link>
+      </div>
     </div>
   );
 }
