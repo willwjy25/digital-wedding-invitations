@@ -12,6 +12,7 @@ import { EventSection } from '@/features/public-invitation/sections/EventSection
 import { LocationSection } from '@/features/public-invitation/sections/LocationSection';
 import { GallerySection } from '@/features/public-invitation/sections/GallerySection';
 import { GiftSection } from '@/features/public-invitation/sections/GiftSection';
+import { RsvpSection } from '@/features/public-invitation/sections/RsvpSection';
 
 export default function InvitationPage() {
   const params = useParams<{ tenantSlug: string }>();
@@ -78,6 +79,12 @@ export default function InvitationPage() {
       <LocationSection events={data.events} />
       <GallerySection items={data.gallery} />
       <GiftSection accounts={data.giftAccounts} />
+      <RsvpSection
+        tenantSlug={data.tenantSlug}
+        guestSlug={data.guest?.slug}
+        guestName={data.guest?.name}
+        initialRsvp={data.rsvp}
+      />
     </div>
   );
 }
