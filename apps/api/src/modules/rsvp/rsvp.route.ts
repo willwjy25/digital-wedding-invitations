@@ -1,8 +1,10 @@
 import { Router } from 'express';
-import { create } from './rsvp.controller';
+import { create, summary } from './rsvp.controller';
+import { authMiddleware } from '../../middlewares/auth.middleware';
 
 const router = Router();
 
-router.post('/', create);
+router.post('/', create); // publik, tanpa auth — untuk submit dari tamu
+router.get('/summary', authMiddleware, summary); // khusus admin
 
 export default router;

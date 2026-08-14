@@ -20,3 +20,21 @@ export const submitRsvpSchema = z.object({
 
 export type RSVP = z.infer<typeof rsvpSchema>;
 export type SubmitRsvpInput = z.infer<typeof submitRsvpSchema>;
+
+export const rsvpWithGuestSchema = rsvpSchema.extend({
+  guest: z.object({
+    name: z.string(),
+    phone: z.string().optional().nullable(),
+  }),
+});
+
+export const rsvpSummarySchema = z.object({
+  totalConfirmed: z.number().int(),
+  totalAttending: z.number().int(),
+  totalNotAttending: z.number().int(),
+  totalGuestCount: z.number().int(),
+  entries: z.array(rsvpWithGuestSchema),
+});
+
+export type RsvpWithGuest = z.infer<typeof rsvpWithGuestSchema>;
+export type RsvpSummary = z.infer<typeof rsvpSummarySchema>;

@@ -27,3 +27,25 @@ export async function submitRsvp(input: SubmitRsvpInput) {
     },
   });
 }
+
+export async function getRsvpSummary(tenantId: string) {
+  const entries = await prisma.rSVP.findMany({
+    where: { tenantId },
+    include: { guest: { select: { name: true, phone: true } } },
+    orderBy: { createdAt: 'desc' },
+  });
+
+  const totalAttending = entries.filter((e) => e.attending).length;
+  const totalNotAttending = entries.filter((e) => !e.attending).length;
+  const totalGuestCount = entries
+    .filter((e) => e.attending)
+    .reduce((sum, e) => sum + e.guestCount, 0);
+
+  return {
+    totalConfirmed: entries.length,
+    totalAttending,
+    totalNotAttending,
+    totalGuestCount,
+    entries,
+  };
+}
