@@ -9,6 +9,7 @@ export async function getPublicInvitation(tenantSlug: string, guestSlug?: string
       loveStory: { orderBy: { order: 'asc' } },
       gallery: { orderBy: { order: 'asc' } },
       giftAccounts: true,
+      wishes: { orderBy: { createdAt: 'desc' } },
     },
   });
 
@@ -39,5 +40,6 @@ export async function getPublicInvitation(tenantSlug: string, guestSlug?: string
     giftAccounts: tenant.giftAccounts,
     guest,
     rsvp,
+    wishes: tenant.wishes,
   };
 }

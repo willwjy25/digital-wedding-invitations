@@ -10,6 +10,7 @@ import giftAccountRoutes from './modules/gift-account/gift-account.route';
 import guestRoutes from './modules/guest/guest.route';
 import publicInvitationRoutes from './modules/public-invitation/public-invitation.route';
 import rsvpRoutes from './modules/rsvp/rsvp.route';
+import wishRoutes from './modules/wish/wish.route';
 
 dotenv.config();
 
@@ -44,3 +45,5 @@ app.use('/api/guests', guestRoutes);
 app.use('/api/public', publicInvitationRoutes);
 
 app.use('/api/rsvp', rsvpRoutes);
+
+app.use('/api/wishes', wishRoutes);
