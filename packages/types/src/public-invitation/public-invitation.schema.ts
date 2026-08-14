@@ -6,14 +6,6 @@ import { galleryItemSchema } from '../gallery/gallery.schema';
 import { giftAccountSchema } from '../gift-account/gift-account.schema';
 import { rsvpSchema } from '../rsvp/rsvp.schema';
 
-const publicRsvpEntrySchema = z.object({
-  id: z.string().uuid(),
-  guestName: z.string(),
-  attending: z.boolean(),
-  guestCount: z.number().int(),
-  message: z.string().optional().nullable(),
-});
-
 export const publicInvitationSchema = z.object({
   tenantSlug: z.string(),
   brideGroom: brideGroomSchema.nullable(),
@@ -29,8 +21,6 @@ export const publicInvitationSchema = z.object({
     })
     .nullable(),
   rsvp: rsvpSchema.nullable(),
-  rsvpList: z.array(publicRsvpEntrySchema),
 });
 
 export type PublicInvitation = z.infer<typeof publicInvitationSchema>;
-export type PublicRsvpEntry = z.infer<typeof publicRsvpEntrySchema>;
