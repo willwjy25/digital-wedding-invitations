@@ -57,6 +57,11 @@ export default function DashboardPage() {
           Lihat RSVP Tamu
         </Link>
       </div>
+      <div>
+        <Link href="/dashboard/checkin" className="text-blue-600 underline">
+          Scan Check-in Tamu
+        </Link>
+      </div>
     </div>
   );
 }
