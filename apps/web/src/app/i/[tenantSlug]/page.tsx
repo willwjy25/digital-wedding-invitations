@@ -13,6 +13,7 @@ import { LocationSection } from '@/features/public-invitation/sections/LocationS
 import { GallerySection } from '@/features/public-invitation/sections/GallerySection';
 import { GiftSection } from '@/features/public-invitation/sections/GiftSection';
 import { RsvpSection } from '@/features/public-invitation/sections/RsvpSection';
+import { WishesSection } from '@/features/public-invitation/sections/WishesSection';
 
 export default function InvitationPage() {
   const params = useParams<{ tenantSlug: string }>();
@@ -84,6 +85,11 @@ export default function InvitationPage() {
         guestSlug={data.guest?.slug}
         guestName={data.guest?.name}
         initialRsvp={data.rsvp}
+      />
+      <WishesSection
+        tenantSlug={data.tenantSlug}
+        defaultName={data.guest?.name}
+        initialWishes={data.wishes}
       />
     </div>
   );
