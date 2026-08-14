@@ -9,6 +9,10 @@ export async function getPublicInvitation(tenantSlug: string, guestSlug?: string
       loveStory: { orderBy: { order: 'asc' } },
       gallery: { orderBy: { order: 'asc' } },
       giftAccounts: true,
+      rsvps: {
+        include: { guest: { select: { name: true } } },
+        orderBy: { createdAt: 'desc' },
+      },
     },
   });
 
@@ -30,6 +34,14 @@ export async function getPublicInvitation(tenantSlug: string, guestSlug?: string
     }
   }
 
+  const rsvpList = tenant.rsvps.map((entry) => ({
+    id: entry.id,
+    guestName: entry.guest.name,
+    attending: entry.attending,
+    guestCount: entry.guestCount,
+    message: entry.message,
+  }));
+
   return {
     tenantSlug: tenant.slug,
     brideGroom: tenant.brideGroom,
@@ -39,5 +51,6 @@ export async function getPublicInvitation(tenantSlug: string, guestSlug?: string
     giftAccounts: tenant.giftAccounts,
     guest,
     rsvp,
+    rsvpList,
   };
 }
