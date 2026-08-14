@@ -84,7 +84,6 @@ export default function InvitationPage() {
         guestSlug={data.guest?.slug}
         guestName={data.guest?.name}
         initialRsvp={data.rsvp}
-        rsvpList={data.rsvpList}
       />
     </div>
   );
