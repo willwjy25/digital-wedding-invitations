@@ -4,6 +4,7 @@ import { eventSchema } from '../event/event.schema';
 import { loveStoryItemSchema } from '../love-story/love-story.schema';
 import { galleryItemSchema } from '../gallery/gallery.schema';
 import { giftAccountSchema } from '../gift-account/gift-account.schema';
+import { rsvpSchema } from '../rsvp/rsvp.schema';
 
 export const publicInvitationSchema = z.object({
   tenantSlug: z.string(),
@@ -19,6 +20,7 @@ export const publicInvitationSchema = z.object({
       slug: z.string(),
     })
     .nullable(),
+  rsvp: rsvpSchema.nullable(),
 });
 
 export type PublicInvitation = z.infer<typeof publicInvitationSchema>;

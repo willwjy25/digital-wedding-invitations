@@ -17,11 +17,17 @@ export async function getPublicInvitation(tenantSlug: string, guestSlug?: string
   }
 
   let guest = null;
+  let rsvp = null;
+
   if (guestSlug) {
     guest = await prisma.guest.findUnique({
       where: { tenantId_slug: { tenantId: tenant.id, slug: guestSlug } },
       select: { id: true, name: true, slug: true },
     });
+
+    if (guest) {
+      rsvp = await prisma.rSVP.findUnique({ where: { guestId: guest.id } });
+    }
   }
 
   return {
@@ -32,5 +38,6 @@ export async function getPublicInvitation(tenantSlug: string, guestSlug?: string
     gallery: tenant.gallery,
     giftAccounts: tenant.giftAccounts,
     guest,
+    rsvp,
   };
 }
