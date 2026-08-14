@@ -11,6 +11,7 @@ import guestRoutes from './modules/guest/guest.route';
 import publicInvitationRoutes from './modules/public-invitation/public-invitation.route';
 import rsvpRoutes from './modules/rsvp/rsvp.route';
 import wishRoutes from './modules/wish/wish.route';
+import checkinRoutes from './modules/checkin/checkin.route';
 
 dotenv.config();
 
@@ -47,3 +48,5 @@ app.use('/api/public', publicInvitationRoutes);
 app.use('/api/rsvp', rsvpRoutes);
 
 app.use('/api/wishes', wishRoutes);
+
+app.use('/api/checkin', checkinRoutes);

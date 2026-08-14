@@ -1,5 +1,10 @@
 import { z } from 'zod';
 
+const checkInInfoSchema = z.object({
+  qrCode: z.string(),
+  checkedAt: z.date().nullable(),
+});
+
 export const guestSchema = z.object({
   id: z.string().uuid(),
   name: z.string().min(2, 'Nama tamu minimal 2 karakter'),
@@ -7,6 +12,7 @@ export const guestSchema = z.object({
   phone: z.string().optional(),
   tenantId: z.string().uuid(),
   createdAt: z.date(),
+  checkIn: checkInInfoSchema.nullable().optional(),
 });
 
 export const createGuestSchema = z.object({

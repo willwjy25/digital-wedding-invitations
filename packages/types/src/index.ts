@@ -9,3 +9,4 @@ export * from './gift-account/gift-account.schema';
 export * from './public-invitation/public-invitation.schema';
 export * from './rsvp/rsvp.schema';
 export * from './wish/wish.schema';
+export * from './checkin/checkin.schema';
