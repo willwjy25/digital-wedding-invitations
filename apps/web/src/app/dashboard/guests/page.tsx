@@ -5,6 +5,7 @@ import type { Guest, CreateGuestInput } from '@repo/types';
 import { getGuests, createGuest, updateGuest, deleteGuest } from '@/features/guest/guest.api';
 import { GuestForm } from '@/features/guest/GuestForm';
 import { CopyLinkButton } from '@/features/guest/CopyLinkButton';
+import { GuestQrCode } from '@/features/guest/GuestQrCode';
 import { BackButton } from '@/components/BackButton';
 
 export default function GuestsPage() {
@@ -12,6 +13,7 @@ export default function GuestsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [qrGuestId, setQrGuestId] = useState<string | null>(null);
 
   async function loadGuests() {
     setIsLoading(true);
@@ -101,6 +103,14 @@ export default function GuestsPage() {
                       </td>
                       <td className="p-3">
                         <div className="flex gap-2">
+                          {guest.checkIn && (
+                            <button
+                              onClick={() => setQrGuestId(guest.id)}
+                              className="rounded border px-3 py-1 text-xs"
+                            >
+                              {guest.checkIn.checkedAt ? '✓ Hadir' : 'Lihat QR'}
+                            </button>
+                          )}
                           <button
                             onClick={() => setEditingId(guest.id)}
                             className="rounded border px-3 py-1 text-xs"
@@ -123,6 +133,19 @@ export default function GuestsPage() {
           </table>
         </div>
       )}
+
+      {qrGuestId &&
+        (() => {
+          const guest = guests.find((g) => g.id === qrGuestId);
+          if (!guest?.checkIn) return null;
+          return (
+            <GuestQrCode
+              guestName={guest.name}
+              qrCode={guest.checkIn.qrCode}
+              onClose={() => setQrGuestId(null)}
+            />
+          );
+        })()}
     </div>
   );
 }
