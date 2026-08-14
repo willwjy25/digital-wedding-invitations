@@ -31,6 +31,7 @@ export default function BrideGroomPage() {
           groomName: data.groomName,
           groomParents: data.groomParents ?? '',
           groomPhotoUrl: data.groomPhotoUrl ?? '',
+          musicUrl: data.musicUrl ?? '',
         });
       }
       setIsLoading(false);
@@ -99,6 +100,15 @@ export default function BrideGroomPage() {
         </div>
 
         {successMessage && <p className="text-sm text-green-600">{successMessage}</p>}
+
+        <div className="space-y-3">
+          <h2 className="font-semibold">Musik Latar (opsional)</h2>
+          <input
+            {...register('musicUrl')}
+            placeholder="URL file musik (MP3)"
+            className="w-full rounded border p-2"
+          />
+        </div>
 
         <button
           type="submit"

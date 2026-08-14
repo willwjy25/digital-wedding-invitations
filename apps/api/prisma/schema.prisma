@@ -84,6 +84,7 @@ model BrideGroom {
   groomName     String
   groomParents  String?
   groomPhotoUrl String?
+  musicUrl      String?
 
   tenantId String @unique
   tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)

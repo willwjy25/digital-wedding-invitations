@@ -14,6 +14,9 @@ import { GallerySection } from '@/features/public-invitation/sections/GallerySec
 import { GiftSection } from '@/features/public-invitation/sections/GiftSection';
 import { RsvpSection } from '@/features/public-invitation/sections/RsvpSection';
 import { WishesSection } from '@/features/public-invitation/sections/WishesSection';
+import { PrayerSection } from '@/features/public-invitation/sections/PrayerSection';
+import { ClosingSection } from '@/features/public-invitation/sections/ClosingSection';
+import { MusicPlayer } from '@/features/public-invitation/sections/MusicPlayer';
 
 export default function InvitationPage() {
   const params = useParams<{ tenantSlug: string }>();
@@ -69,6 +72,7 @@ export default function InvitationPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      <MusicPlayer audioUrl={data.brideGroom?.musicUrl || undefined} />
       <HeroSection
         brideName={data.brideGroom?.brideName}
         groomName={data.brideGroom?.groomName}
@@ -90,6 +94,11 @@ export default function InvitationPage() {
         tenantSlug={data.tenantSlug}
         defaultName={data.guest?.name}
         initialWishes={data.wishes}
+      />
+      <PrayerSection />
+      <ClosingSection
+        brideName={data.brideGroom?.brideName}
+        groomName={data.brideGroom?.groomName}
       />
     </div>
   );

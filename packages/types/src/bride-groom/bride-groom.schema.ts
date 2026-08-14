@@ -8,6 +8,7 @@ export const brideGroomSchema = z.object({
   groomName: z.string().min(2, 'Nama mempelai pria wajib diisi'),
   groomParents: z.string().optional(),
   groomPhotoUrl: z.string().url().optional().or(z.literal('')),
+  musicUrl: z.string().url().optional().or(z.literal('')),
   tenantId: z.string().uuid(),
 });
 
